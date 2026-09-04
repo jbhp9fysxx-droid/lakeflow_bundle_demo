@@ -1,0 +1,24 @@
+resources:
+  jobs:
+    callcenter_bundle_job:
+      name: callcenter_bundle_job_v2
+      queue:
+        enabled: true
+      tasks:
+        - task_key: ingest_task
+          spark_python_task:
+            python_file: ../src/job_task_1_ingest.py
+          environment_key: Default
+
+        - task_key: audit_task
+          depends_on:
+            - task_key: ingest_task
+          spark_python_task:
+            python_file: ../src/job_task_2_audit.py
+          environment_key: Default
+
+      environments:
+        - environment_key: Default
+          spec:
+            environment_version: "2"
+
