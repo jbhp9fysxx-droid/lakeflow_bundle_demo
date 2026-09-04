@@ -2,6 +2,7 @@ resources:
   jobs:
     callcenter_bundle_job:
       name: callcenter_bundle_job_v2
+      description: "Bundle-managed call center demo job"
       queue:
         enabled: true
       tasks:
